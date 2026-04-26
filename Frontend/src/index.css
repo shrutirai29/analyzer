@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  /* --- LIGHT MODE (Original) --- */
+  body {
+    margin: 0;
+    background: radial-gradient(1200px 450px at 10% -10%, #e8faf4 0%, transparent 60%),
+      radial-gradient(1000px 450px at 95% 5%, #eef4ff 0%, transparent 55%), #f4f7fb;
+    color: #0f172a;
+    font-family: "DM Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* --- DARK MODE BODY --- */
+  .dark body {
+    background: radial-gradient(1100px 400px at 10% -10%, rgba(14, 164, 122, 0.2) 0%, transparent 60%),
+      radial-gradient(1000px 400px at 95% 5%, rgba(59, 130, 246, 0.18) 0%, transparent 55%), #020617;
+    color: #f1f5f9;
+  }
+}
+
+@layer components {
+  /* --- LIGHT MODE COMPONENTS --- */
+  .btn-primary {
+    @apply inline-flex items-center justify-center bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-xl px-4 py-2.5 text-sm transition-all shadow-sm hover:shadow disabled:opacity-60 disabled:cursor-not-allowed;
+  }
+
+  /* View History ko Start Analysis jaisa kiya (Sirf Light Mode ke liye) */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center bg-white hover:bg-gray-50 text-gray-900 font-semibold rounded-xl px-4 py-2.5 text-sm border border-gray-200 transition-all shadow-sm;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center bg-red-50 hover:bg-red-100 text-red-600 font-semibold rounded-xl px-4 py-2.5 text-sm border border-red-200 transition-colors;
+  }
+
+  .input {
+    @apply w-full px-3.5 py-2.5 border border-gray-200 rounded-xl text-sm outline-none transition-all focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 bg-white placeholder:text-gray-400;
+  }
+
+  .card {
+    @apply bg-white/90 backdrop-blur rounded-2xl border border-white/70 p-6 shadow-sm;
+  }
+
+  .section-title {
+    @apply text-lg md:text-xl font-semibold text-slate-900;
+  }
+
+  /* Guided Flow text visibility fix (Light Mode) */
+  .muted {
+    @apply text-sm text-gray-600 font-medium;
+  }
+
+  /* History boxes ke andar ka text visible karne ke liye */
+  .card p, .card .text-gray-400 {
+    color: #4b5563 !important; /* Darker grey for light mode visibility */
+  }
+
+  /* --- DARK MODE FIXES --- */
+  
+  .dark .btn-primary {
+    @apply shadow-lg shadow-brand-500/20;
+  }
+
+  /* Start New Analysis visibility in Dark Mode */
+  .dark button.bg-white, 
+  .dark .bg-white:not(.btn-ghost) {
+    background-color: #1e293b !important;
+    color: #ffffff !important;
+    border-color: #334155 !important;
+  }
+
+  /* View History: Dark mode mein waisa hi rahega jaisa pehle tha */
+  .dark .btn-ghost {
+    background: rgba(30, 41, 59, 0.7) !important;
+    color: #f1f5f9 !important;
+    border-color: #334155 !important;
+    box-shadow: none;
+  }
+
+  .dark .card {
+    background: rgba(15, 23, 42, 0.8) !important;
+    border-color: rgba(51, 65, 85, 0.5) !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .dark h1, .dark h2, .dark h3, .dark h4, 
+  .dark .section-title, .dark .text-slate-900, 
+  .dark .text-3xl, .dark .text-2xl {
+    color: #ffffff !important;
+  }
+
+  .dark p, .dark .muted, .dark .text-slate-500, .dark .text-gray-500, .dark .card p {
+    color: #94a3b8 !important;
+  }
+
+  .dark .bg-gray-100, .dark .bg-gray-200 {
+    background-color: #1e293b !important;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+.dark ::-webkit-scrollbar-thumb { background: #334155; }
+
+.score-ring-circle {
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
